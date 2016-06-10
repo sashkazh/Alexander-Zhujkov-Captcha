@@ -3,21 +3,25 @@ $(function () {
         $("#captcha_code").attr('src','captcha_code.php');
     });
     $(".btnAction").click(function () {
+        var captcha = $("#captcha").val();
         var valid = true;
-        if (!$("#captcha").val()) {
+        if (!captcha) {
             $("#captcha-info").html("(required)");
             $("#captcha").css('background-color', '#FFFFDF');
             valid = false;
         }
         if (valid) {
             $.ajax({
-                url: "captcha_code.php",
-                data: 'captcha_code=' + $("#captcha").val(),
+                url: "captcha.php",
+                data: 'captcha='+captcha,
                 type: "POST",
-                success: function (data) {
-                    alert("OK!")
-                },
-                error: function () {
+                success: function (msg){
+                    if(msg == "wrong") {
+                        alert("GFU!");
+
+                    } else if(msg == "ok"){
+                        alert("NICE!");
+                    }
                 }
             });
         }

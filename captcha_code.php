@@ -10,11 +10,3 @@ $captcha_text_color = imagecolorallocate($target_layer, 0, 0, 0);
 imagestring($target_layer, 5, 5, 5, $captcha_code, $captcha_text_color);
 header("Content-type: image/jpeg");
 imagejpeg($target_layer);
-
-if($_POST["captcha_code"]==$_SESSION["captcha_code"]){
-    echo "Your message received successfully";
-}
-else{
-    echo "Enter Correct Captcha Code";
-}
-?>
